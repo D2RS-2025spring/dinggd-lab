@@ -1,3 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 作物养分高效利用与抗逆机制课题组</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#0ea5e9',
+                        neutral: '#f3f4f6',
+                        'neutral-dark': '#1f2937',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .nav-link {
+                @apply relative text-neutral-dark hover:text-primary transition-colors duration-300;
+            }
+            .nav-link::after {
+                @apply content-[''] absolute bottom-[-4px] left-0 w-0 h-[2px] bg-primary transition-all duration-300;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .nav-link.active {
+                @apply text-primary font-medium;
+            }
+            .nav-link.active::after {
+                @apply w-full;
+            }
+            .contact-info {
+                @apply bg-white rounded-xl shadow-md p-6 mb-8;
+            }
+            .contact-item {
+                @apply flex items-start mb-4 last:mb-0;
+            }
+            .contact-icon {
+                @apply text-primary text-2xl mt-1 mr-4 w-8 text-center;
+            }
+            .map-container {
+                @apply bg-white rounded-xl shadow-md overflow-hidden h-80;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-neutral text-neutral-dark">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <span class="text-primary text-2xl font-bold">作物养分高效利用与抗逆机制课题组</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="research.html" class="nav-link">科研成果</a>
+                <a href="members.html" class="nav-link">课题组成员</a>
+                <a href="recruitment.html" class="nav-link">招生说明</a>
+                <a href="contact.html" class="nav-link active">联系我们</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-neutral-dark focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full animate-fade-in">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="py-2 px-4 nav-link">首页</a>
+                <a href="research.html" class="py-2 px-4 nav-link">科研成果</a>
+                <a href="members.html" class="py-2 px-4 nav-link">课题组成员</a>
+                <a href="recruitment.html" class="py-2 px-4 nav-link">招生说明</a>
+                <a href="contact.html" class="py-2 px-4 nav-link active">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="pt-20 pb-16">
+        <!-- 页面标题 -->
+        <section class="bg-gradient-to-r from-primary to-secondary py-16 text-white">
             <div class="container mx-auto px-4">
                 <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold mb-4 text-shadow">联系我们</h1>
                 <p class="text-[clamp(1rem,2vw,1.25rem)] max-w-3xl">欢迎访问作物养分高效利用与抗逆机制课题组。我们致力于植物营养学与逆境生物学领域的研究，探索作物高效利用养分和应对环境胁迫的分子机制。</p>
@@ -17,42 +130,31 @@
                         
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fa-solid fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">地址</h3>
-                                <p class="text-gray-600">中国北京市海淀区中关村南大街5号中国农业大学西校区农学楼</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="contact-icon">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
                             <div>
-                                <h3 class="font-medium">邮箱</h3>
-                                <p class="text-gray-600">contact@cau.edu.cn</p>
+                                <h3 class="font-medium">电子邮箱</h3>
+                                <p class="text-gray-600">dgd@mail.hzau.edu.cn</p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fa-solid fa-phone"></i>
+                                <i class="fa-solid fa-map-marker-alt"></i>
                             </div>
                             <div>
-                                <h3 class="font-medium">电话</h3>
-                                <p class="text-gray-600">+86 (010) 6273-1234</p>
+                                <h3 class="font-medium">通讯地址</h3>
+                                <p class="text-gray-600">湖北省武汉市洪山区华中农业大学 430070</p>
                             </div>
                         </div>
                         
                         <div class="contact-item">
                             <div class="contact-icon">
-                                <i class="fa-solid fa-clock"></i>
+                                <i class="fa-solid fa-building"></i>
                             </div>
                             <div>
-                                <h3 class="font-medium">工作时间</h3>
-                                <p class="text-gray-600">周一至周五: 9:00 - 17:30</p>
-                                <p class="text-gray-600">周六、周日: 休息</p>
+                                <h3 class="font-medium">办公室</h3>
+                                <p class="text-gray-600">华中农业大学主楼3楼</p>
                             </div>
                         </div>
                     </div>
@@ -85,7 +187,7 @@
                 <div class="lg:col-span-2 space-y-8">
                     <!-- 地图 -->
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.477587101726!2d116.30122731547463!3d39.95053404974033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35f1a0f4b31a2e27%3A0x4f5d534f4a1a169a!2z5p2l5a6Y5pa55paw6aSQ5a6J5a6d5piv5a6Y5pa5!5e0!3m2!1szh-CN!2sus!4v1685442563572!5m2!1szh-CN!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3053.477587101726!2d114.36657731547463!3d30.51783404974033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35f1a0f4b31a2e27%3A0x4f5d534f4a1a169a!2z5p2l5a6Y5pa55paw6aSQ5a6J5a6d5piv5a6Y5pa5!5e0!3m2!1szh-CN!2sus!4v1685442563572!5m2!1szh-CN!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                     
                     <!-- 联系表单 -->
@@ -176,16 +278,16 @@
                     <h3 class="text-lg font-semibold mb-4">联系我们</h3>
                     <ul class="space-y-3">
                         <li class="flex items-start">
+                            <i class="fa-solid fa-envelope text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">dgd@mail.hzau.edu.cn</span>
+                        </li>
+                        <li class="flex items-start">
                             <i class="fa-solid fa-map-marker-alt text-primary mt-1 mr-3"></i>
-                            <span class="text-gray-400">中国北京市海淀区中关村南大街5号中国农业大学西校区农学楼</span>
+                            <span class="text-gray-400">湖北省武汉市洪山区华中农业大学 430070</span>
                         </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-envelope text-primary mr-3"></i>
-                            <a href="mailto:contact@cau.edu.cn" class="text-gray-400 hover:text-white transition-colors duration-300">contact@cau.edu.cn</a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fa-solid fa-phone text-primary mr-3"></i>
-                            <a href="tel:+8601062731234" class="text-gray-400 hover:text-white transition-colors duration-300">+86 (010) 6273-1234</a>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-building text-primary mt-1 mr-3"></i>
+                            <span class="text-gray-400">华中农业大学主楼3楼</span>
                         </li>
                     </ul>
                 </div>
