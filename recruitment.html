@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>植物营养生物学课题组 - 招生说明</title>
+    <title>招生说明 - 作物养分高效利用与抗逆机制课题组</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,4 +12,270 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F4C81', // 深蓝主色调，代表专业性和信任感
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#0ea5e9',
+                        neutral: '#f3f4f6',
+                        'neutral-dark': '#1f2937',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .nav-link {
+                @apply relative text-neutral-dark hover:text-primary transition-colors duration-300;
+            }
+            .nav-link::after {
+                @apply content-[''] absolute bottom-[-4px] left-0 w-0 h-[2px] bg-primary transition-all duration-300;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .nav-link.active {
+                @apply text-primary font-medium;
+            }
+            .nav-link.active::after {
+                @apply w-full;
+            }
+            .recruitment-section {
+                @apply mb-12 last:mb-0;
+            }
+            .recruitment-title {
+                @apply text-xl font-bold text-primary mb-4;
+            }
+            .recruitment-subtitle {
+                @apply text-lg font-semibold mb-2 mt-6 first:mt-0;
+            }
+            .recruitment-content {
+                @apply bg-white rounded-xl shadow-md p-6;
+            }
+            .recruitment-list {
+                @apply list-disc pl-6 space-y-2;
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-neutral text-neutral-dark">
+    <!-- 导航栏 -->
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-2">
+                <span class="text-primary text-2xl font-bold">作物养分高效利用与抗逆机制课题组</span>
+            </a>
+            
+            <!-- 桌面导航 -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="research.html" class="nav-link">科研成果</a>
+                <a href="members.html" class="nav-link">课题组成员</a>
+                <a href="recruitment.html" class="nav-link active">招生说明</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
+            </nav>
+            
+            <!-- 移动端菜单按钮 -->
+            <button id="menuBtn" class="md:hidden text-neutral-dark focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+        
+        <!-- 移动端导航菜单 -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full animate-fade-in">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+                <a href="index.html" class="py-2 px-4 nav-link">首页</a>
+                <a href="research.html" class="py-2 px-4 nav-link">科研成果</a>
+                <a href="members.html" class="py-2 px-4 nav-link">课题组成员</a>
+                <a href="recruitment.html" class="py-2 px-4 nav-link active">招生说明</a>
+                <a href="contact.html" class="py-2 px-4 nav-link">联系我们</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="pt-20 pb-16">
+        <!-- 页面标题 -->
+        <section class="bg-gradient-to-r from-primary to-secondary py-16 text-white">
+            <div class="container mx-auto px-4">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center text-shadow animate-fade-in">招生说明</h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-center mt-4 max-w-3xl mx-auto animate-fade-in">博士生与硕士生招生要求与说明</p>
+            </div>
+        </section>
+
+        <!-- 招生说明内容 -->
+        <section class="py-12">
+            <div class="container mx-auto px-4">
+                <div class="max-w-3xl mx-auto">
+                    <!-- 博士生招生说明 -->
+                    <div class="recruitment-section">
+                        <h2 class="recruitment-title">博士生招生说明</h2>
+                        <div class="recruitment-content">
+                            <h3 class="recruitment-subtitle">一、招生基本要求</h3>
+                            <ul class="recruitment-list">
+                                <li>年度招生计划：拟每年招收 1 名博士生。</li>
+                                <li>申请材料清单：请有意向报考者提供个人简历、学业成绩单、专家推荐信，以及其他能体现学术能力或科研潜力的辅助材料（如科研成果、获奖证明等）。</li>
+                            </ul>
+                            
+                            <h3 class="recruitment-subtitle">二、博士生素质能力要求</h3>
+                            <ol class="list-decimal pl-6 space-y-3">
+                                <li>
+                                    <span class="font-semibold">学术思维与创新能力：</span>
+                                    具备批判性思维与独立思考能力，能在专业领域提出创新性问题与解决方案。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">科研主动性与执行力：</span>
+                                    展现高度的学术主动性，能自主规划研究方向，以勤奋严谨的态度推进科研工作。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">专业基础与实践能力：</span>
+                                    拥有扎实的理论知识体系，同时具备优秀的实验操作或技术应用能力，实现理论与实践结合。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">心理素质与意志品质：</span>
+                                    具备坚韧的科研毅力，能在压力下持续探索，面对挑战时保持专注与韧性。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">沟通协作与表达能力：</span>
+                                    <ul class="list-disc pl-6 space-y-1 mt-1">
+                                        <li>良好的中英文口头表达与学术写作能力，能清晰呈现研究成果；</li>
+                                        <li>具备团队协作精神，可在跨学科合作中高效沟通、协同创新。</li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="font-semibold">综合素养与发展潜力：</span>
+                                    拥有良好的情绪管理能力与人际协调能力，具备长期学术发展所需的综合素质。
+                                </li>
+                            </ol>
+                            
+                            <h3 class="recruitment-subtitle">说明</h3>
+                            <p>以上要求旨在选拔具备学术潜力、科研热情与综合素养的高层次人才，欢迎符合条件的同学积极申请。</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 硕士生招生说明 -->
+                    <div class="recruitment-section">
+                        <h2 class="recruitment-title">硕士生招生说明</h2>
+                        <div class="recruitment-content">
+                            <h3 class="recruitment-subtitle">一、招生基本要求</h3>
+                            <ul class="recruitment-list">
+                                <li>年度招生计划：拟每年招收 4 名硕士研究生。</li>
+                            </ul>
+                            
+                            <h3 class="recruitment-subtitle">二、硕士生素质能力要求</h3>
+                            <ol class="list-decimal pl-6 space-y-3">
+                                <li>
+                                    <span class="font-semibold">专业基础与学习能力：</span>
+                                    具备扎实的专业知识体系，能快速理解并应用学科理论，展现较强的知识整合与学习创新能力。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">科研 / 实践主动性：</span>
+                                    以勤奋严谨的态度投入学习与实践，主动参与课题研究、实验项目或专业实践，具备独立完成任务的执行力。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">英语应用能力：</span>
+                                    具备良好的英语听说读写能力，能流畅阅读专业英文文献，可参与国际学术交流或英文资料整理分析。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">团队协作与沟通能力：</span>
+                                    具有团队合作精神，能在小组项目中积极配合、高效协作，同时具备良好的人际沟通与协调能力，善于表达观点并整合团队意见。
+                                </li>
+                                <li>
+                                    <span class="font-semibold">综合素质与发展潜力：</span>
+                                    拥有良好的情绪管理能力与抗压能力，具备适应研究生阶段学习压力的心理韧性，对专业领域有持续探索的热情与发展潜力。
+                                </li>
+                            </ol>
+                            
+                            <h3 class="recruitment-subtitle">说明</h3>
+                            <p>以上要求旨在选拔具备专业素养、实践热情与综合能力的优秀人才，欢迎符合条件的同学踊跃申请。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-neutral-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">作物养分高效利用与抗逆机制课题组</h3>
+                    <p class="text-gray-300">隶属于"植物营养生物学团队"</p>
+                    <p class="text-gray-300 mt-2">专注于作物养分高效利用与抗逆机制研究</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">联系方式</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:dgd@mail.hzau.edu.cn" class="hover:text-primary">dgd@mail.hzau.edu.cn</a></li>
+                        <li><i class="fa-solid fa-map-marker-alt mr-2"></i> 湖北省武汉市洪山区华中农业大学 430070</li>
+                        <li><i class="fa-solid fa-building mr-2"></i> 华中农业大学主楼3楼</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-primary">首页</a></li>
+                        <li><a href="research.html" class="hover:text-primary">科研成果</a></li>
+                        <li><a href="members.html" class="hover:text-primary">课题组成员</a></li>
+                        <li><a href="recruitment.html" class="hover:text-primary">招生说明</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 作物养分高效利用与抗逆机制课题组. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                ? '<i class="fa-solid fa-bars text-xl"></i>' 
+                : '<i class="fa-solid fa-times text-xl"></i>';
+        });
+        
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        let lastScrollTop = 0;
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
+                navbar.classList.add('py-2', 'shadow-md');
+                navbar.classList.remove('py-3', 'shadow-sm');
+            } else {
+                navbar.classList.add('py-3', 'shadow-sm');
+                navbar.classList.remove('py-2', 'shadow-md');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>
+    
