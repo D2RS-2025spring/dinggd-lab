@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>植物营养生物学课题组 - 首页</title>
+    <title>作物养分高效利用与抗逆机制课题组</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,16 +12,30 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F4C81', // 深蓝主色调，代表专业性和信任感
-                        secondary: '#3A86FF', // 亮蓝色辅助色
-                        accent: '#FB8500', // 橙色强调色，增添活力
-                        neutral: '#F8F9FA', // 浅色背景
-                        dark: '#212529', // 深色文本
+                        primary: '#1e40af', // 深蓝色作为主色调，体现专业性和信任感
+                        secondary: '#3b82f6', // 浅蓝色作为辅助色
+                        accent: '#0ea5e9', // 亮蓝色作为强调色
+                        neutral: '#f3f4f6', // 浅灰色作为中性色
+                        'neutral-dark': '#1f2937', // 深灰色作为文字颜色
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
                     },
-                }
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                },
             }
         }
     </script>
@@ -33,213 +47,109 @@
             .text-shadow {
                 text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .transition-navbar {
-                transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
-            }
-            .hover-scale {
-                transition: transform 0.3s ease;
-            }
-            .hover-scale:hover {
-                transform: scale(1.03);
-            }
-            .publication-item {
+            .card-hover {
                 transition: all 0.3s ease;
             }
-            .publication-item:hover {
-                transform: translateX(5px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .nav-link {
+                @apply relative text-neutral-dark hover:text-primary transition-colors duration-300;
+            }
+            .nav-link::after {
+                @apply content-[''] absolute bottom-[-4px] left-0 w-0 h-[2px] bg-primary transition-all duration-300;
+            }
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .nav-link.active {
+                @apply text-primary font-medium;
+            }
+            .nav-link.active::after {
+                @apply w-full;
             }
         }
     </style>
 </head>
-<body class="font-inter bg-neutral text-dark">
+<body class="font-inter bg-neutral text-neutral-dark">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full top-0 z-50 transition-navbar bg-white/95 backdrop-blur-sm shadow-sm">
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                    <i class="fa-solid fa-leaf text-white text-xl"></i>
-                </div>
-                <span class="text-xl font-bold text-primary">植物营养生物学课题组</span>
+                <span class="text-primary text-2xl font-bold">作物养分高效利用与抗逆机制课题组</span>
             </a>
             
             <!-- 桌面导航 -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="font-medium text-primary border-b-2 border-primary pb-1">首页</a>
-                <a href="research.html" class="font-medium text-dark hover:text-primary transition-colors">科研成果</a>
-                <a href="members.html" class="font-medium text-dark hover:text-primary transition-colors">课题组成员</a>
-                <a href="recruitment.html" class="font-medium text-dark hover:text-primary transition-colors">招生说明</a>
-                <a href="contact.html" class="font-medium text-dark hover:text-primary transition-colors">联系我们</a>
+                <a href="index.html" class="nav-link active">首页</a>
+                <a href="research.html" class="nav-link">科研成果</a>
+                <a href="members.html" class="nav-link">课题组成员</a>
+                <a href="recruitment.html" class="nav-link">招生说明</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
             </nav>
             
             <!-- 移动端菜单按钮 -->
-            <button id="menu-toggle" class="md:hidden text-dark focus:outline-none">
-                <i class="fa-solid fa-bars text-2xl"></i>
+            <button id="menuBtn" class="md:hidden text-neutral-dark focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
         
         <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full animate-fade-in">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-                <a href="index.html" class="font-medium text-primary py-2 border-b border-gray-100">首页</a>
-                <a href="research.html" class="font-medium text-dark py-2 border-b border-gray-100 hover:text-primary transition-colors">科研成果</a>
-                <a href="members.html" class="font-medium text-dark py-2 border-b border-gray-100 hover:text-primary transition-colors">课题组成员</a>
-                <a href="recruitment.html" class="font-medium text-dark py-2 border-b border-gray-100 hover:text-primary transition-colors">招生说明</a>
-                <a href="contact.html" class="font-medium text-dark py-2 hover:text-primary transition-colors">联系我们</a>
+                <a href="index.html" class="py-2 px-4 nav-link active">首页</a>
+                <a href="research.html" class="py-2 px-4 nav-link">科研成果</a>
+                <a href="members.html" class="py-2 px-4 nav-link">课题组成员</a>
+                <a href="recruitment.html" class="py-2 px-4 nav-link">招生说明</a>
+                <a href="contact.html" class="py-2 px-4 nav-link">联系我们</a>
             </div>
         </div>
     </header>
 
     <!-- 主内容 -->
-    <main class="pt-20">
-        <!-- 英雄区域 -->
-        <section class="relative bg-gradient-to-r from-primary to-secondary text-white py-20 md:py-28 overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://picsum.photos/id/106/1920/1080')] bg-cover bg-center opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-3xl">
-                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-shadow mb-6">植物营养生物学课题组</h1>
-                    <p class="text-[clamp(1.1rem,2vw,1.3rem)] text-white/90 mb-8">致力于作物养分高效利用与抗逆机制研究</p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="contact.html" class="px-6 py-3 bg-accent hover:bg-accent/90 text-white rounded-lg font-medium transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                            加入我们
-                        </a>
-                        <a href="research.html" class="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/30 rounded-lg font-medium transition-all">
-                            查看科研成果
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 波浪装饰 -->
-            <div class="absolute bottom-0 left-0 w-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-auto">
-                    <path fill="#F8F9FA" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
-                </svg>
+    <main class="pt-20 pb-16">
+        <!-- 页面标题 -->
+        <section class="bg-gradient-to-r from-primary to-secondary py-16 text-white">
+            <div class="container mx-auto px-4">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center text-shadow animate-fade-in">作物养分高效利用与抗逆机制课题组</h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-center mt-4 max-w-3xl mx-auto animate-slide-up">隶属于"植物营养生物学团队"，专注于作物养分高效利用与抗逆机制研究</p>
             </div>
         </section>
 
         <!-- 课题组简介 -->
-        <section class="py-16 bg-white">
+        <section class="py-12">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">课题组简介</h2>
-                    <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-6">
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            丁广大团队归属于"植物营养生物学课题组"。主要研究方向为作物养分高效利用与抗逆机制。团队负责人丁广大, 华中农业大学教授，主持和承担国家自然科学基金、国家重点研发计划子课题、湖北省自然科学基金等各类科研项目10余项。
-                        </p>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            以第一或通讯作者在Molecular Plant、Plant Cell and Environment、植物营养与肥料学报、中国油料作物学报等国内外知名学术期刊发表研究论文30余篇。
-                        </p>
-                        <p class="text-lg text-gray-700 leading-relaxed">
-                            课题组学生先后荣获国家奖学金、三好研究生、优秀毕业研究生等荣誉。指导本科生获华中农业大学优秀学士学位论文奖。
-                        </p>
-                        <div class="bg-primary/5 p-6 rounded-lg border-l-4 border-primary">
-                            <p class="font-medium text-primary">
-                                我们团队常年招聘土壤、植物、生物等专业人才, 欢迎感兴趣的同学加入团队: <a href="mailto:dgd@mail.hzau.edu.cn" class="text-accent hover:underline">dgd@mail.hzau.edu.cn</a>。
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <div class="relative">
-                        <div class="relative z-10 rounded-xl overflow-hidden shadow-2xl hover-scale">
-                            <img src="https://picsum.photos/id/1025/800/600" alt="课题组研究场景" class="w-full h-auto">
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-accent/10 rounded-full -z-10"></div>
-                        <div class="absolute -top-6 -left-6 w-32 h-32 bg-primary/10 rounded-full -z-10"></div>
+                <div class="bg-white rounded-xl shadow-lg p-8 animate-fade-in">
+                    <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary mb-6 border-b-2 border-primary/20 pb-3">课题组简介</h2>
+                    <div class="space-y-4 text-lg leading-relaxed">
+                        <p>本课题组归属于"植物营养生物学团队"。主要研究方向为作物养分高效利用与抗逆机制。团队负责人丁广大, 华中农业大学教授，主持和承担国家自然科学基金、国家重点研发计划子课题、湖北省自然科学基金等各类科研项目10余项。以第一或通讯作者在Molecular Plant、Plant Cell and Environment、植物营养与肥料学报、中国油料作物学报等国内外知名学术期刊发表研究论文30余篇。</p>
+                        <p>课题组学生先后荣获国家奖学金、三好研究生、优秀毕业研究生等荣誉。指导本科生获华中农业大学优秀学士学位论文奖。</p>
+                        <p>我们团队常年招聘土壤、植物、生物等专业人才, 欢迎感兴趣的同学加入团队: <a href="mailto:dgd@mail.hzau.edu.cn" class="text-primary hover:underline">dgd@mail.hzau.edu.cn</a>。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 研究方向 -->
-        <section class="py-16 bg-neutral">
+        <!-- 团队负责人 -->
+        <section class="py-12 bg-gradient-to-b from-white to-neutral">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">研究方向</h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto">我们致力于探索植物营养与抗逆机制的前沿领域，为农业可持续发展提供理论支持和技术创新</p>
-                    <div class="w-20 h-1 bg-accent mx-auto rounded-full mt-4"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- 研究方向1 -->
-                    <div class="bg-white rounded-xl p-8 shadow-lg hover-scale">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-seedling text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-4">作物养分高效利用</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            研究植物对氮、磷、钾等主要养分的吸收、转运和利用机制，旨在提高作物养分利用效率，减少化肥使用。
-                        </p>
-                    </div>
-                    
-                    <!-- 研究方向2 -->
-                    <div class="bg-white rounded-xl p-8 shadow-lg hover-scale">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-shield-alt text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-4">植物抗逆机制</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            揭示植物对铝毒、酸性土壤、干旱等逆境的响应机制，挖掘关键基因资源，为培育抗逆作物品种提供理论依据。
-                        </p>
-                    </div>
-                    
-                    <!-- 研究方向3 -->
-                    <div class="bg-white rounded-xl p-8 shadow-lg hover-scale">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                            <i class="fa-solid fa-dna text-2xl text-primary"></i>
-                        </div>
-                        <h3 class="text-xl font-bold text-primary mb-4">分子生物学与基因调控</h3>
-                        <p class="text-gray-600 leading-relaxed">
-                            利用分子生物学和基因组学技术，研究植物营养代谢和抗逆相关基因的功能及其调控网络。
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 课题组负责人 -->
-        <section class="py-16 bg-white">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">课题组负责人</h2>
-                    <div class="w-20 h-1 bg-accent mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-8 md:p-12">
-                    <div class="grid md:grid-cols-3 gap-8 items-center">
-                        <div class="md:col-span-1">
-                            <div class="relative">
-                                <div class="relative z-10 rounded-xl overflow-hidden shadow-xl">
-                                    <img src="https://picsum.photos/id/1005/400/500" alt="丁广大教授" class="w-full h-auto">
+                <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden animate-slide-up">
+                    <div class="p-8">
+                        <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary mb-6 border-b-2 border-primary/20 pb-3">团队负责人</h2>
+                        <div class="flex flex-col md:flex-row items-center gap-8">
+                            <div class="bg-neutral rounded-full w-40 h-40 flex items-center justify-center overflow-hidden">
+                                <div class="text-6xl text-primary/30">
+                                    <i class="fa-solid fa-user"></i>
                                 </div>
-                                <div class="absolute -bottom-4 -right-4 w-20 h-20 bg-accent/20 rounded-full -z-10"></div>
                             </div>
-                        </div>
-                        
-                        <div class="md:col-span-2">
-                            <h3 class="text-2xl font-bold text-primary mb-2">丁广大 教授/博士生导师</h3>
-                            <p class="text-gray-600 mb-4">研究方向：植物营养逆境生理与分子生物学</p>
-                            
                             <div class="space-y-4">
-                                <p class="text-gray-700 leading-relaxed">
-                                    丁广大教授现任华中农业大学资源与环境学院教授，博士生导师，植物营养生物学课题组负责人。主要从事植物营养逆境生理与分子生物学研究，特别是作物对酸性土壤、铝毒等逆境的响应机制和养分高效利用的分子基础。
-                                </p>
-                                <p class="text-gray-700 leading-relaxed">
-                                    主持和承担国家自然科学基金、国家重点研发计划子课题、湖北省自然科学基金等各类科研项目10余项。在Molecular Plant、Plant Journal、New Phytologist等期刊发表论文30余篇。
-                                </p>
-                                
-                                <div class="flex flex-wrap gap-4 mt-6">
-                                    <a href="mailto:dgd@mail.hzau.edu.cn" class="flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg transition-colors">
-                                        <i class="fa-solid fa-envelope mr-2"></i> dgd@mail.hzau.edu.cn
-                                    </a>
-                                    <a href="members.html" class="flex items-center px-4 py-2 bg-accent hover:bg-accent/90 text-white rounded-lg transition-colors">
-                                        查看详细介绍
-                                    </a>
+                                <h3 class="text-2xl font-bold">丁广大</h3>
+                                <p class="text-lg">教授 / 博士生导师</p>
+                                <div class="space-y-2">
+                                    <p><i class="fa-solid fa-envelope text-primary mr-2"></i> <a href="mailto:dgd@mail.hzau.edu.cn" class="hover:underline">dgd@mail.hzau.edu.cn</a></p>
+                                    <p><i class="fa-solid fa-book text-primary mr-2"></i> 主持和承担国家自然科学基金、国家重点研发计划子课题、湖北省自然科学基金等各类科研项目10余项。</p>
+                                    <p><i class="fa-solid fa-paper-plane text-primary mr-2"></i> 以第一或通讯作者在Molecular Plant、Plant Cell and Environment、植物营养与肥料学报、中国油料作物学报等国内外知名学术期刊发表研究论文30余篇。</p>
                                 </div>
                             </div>
                         </div>
@@ -249,31 +159,22 @@
         </section>
 
         <!-- 相关链接 -->
-        <section class="py-16 bg-primary text-white">
+        <section class="py-12">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold mb-4">相关链接</h2>
-                    <div class="w-20 h-1 bg-white/50 mx-auto rounded-full"></div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                    <a href="https://www.hzau.edu.cn/" target="_blank" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-6 rounded-xl transition-all hover-scale flex items-center">
-                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                            <i class="fa-solid fa-university text-xl"></i>
-                        </div>
+                <h2 class="text-[clamp(1.5rem,3vw,2rem)] font-bold text-primary mb-6 text-center">相关链接</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <a href="https://www.hzau.edu.cn/" target="_blank" class="bg-white rounded-xl shadow-md p-6 flex items-center card-hover">
+                        <i class="fa-solid fa-building text-3xl text-primary mr-4"></i>
                         <div>
                             <h3 class="text-xl font-semibold">华中农业大学</h3>
-                            <p class="text-white/80">https://www.hzau.edu.cn/</p>
+                            <p class="text-gray-600">https://www.hzau.edu.cn/</p>
                         </div>
                     </a>
-                    
-                    <a href="https://zyhj.hzau.edu.cn/" target="_blank" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm p-6 rounded-xl transition-all hover-scale flex items-center">
-                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-4">
-                            <i class="fa-solid fa-building text-xl"></i>
-                        </div>
+                    <a href="https://zyhj.hzau.edu.cn/" target="_blank" class="bg-white rounded-xl shadow-md p-6 flex items-center card-hover">
+                        <i class="fa-solid fa-tree text-3xl text-primary mr-4"></i>
                         <div>
                             <h3 class="text-xl font-semibold">华中农业大学资源与环境学院</h3>
-                            <p class="text-white/80">https://zyhj.hzau.edu.cn/</p>
+                            <p class="text-gray-600">https://zyhj.hzau.edu.cn/</p>
                         </div>
                     </a>
                 </div>
@@ -282,136 +183,90 @@
     </main>
 
     <!-- 页脚 -->
-    <footer class="bg-dark text-white pt-16 pb-8">
+    <footer class="bg-neutral-dark text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-6">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                            <i class="fa-solid fa-leaf text-primary text-xl"></i>
-                        </div>
-                        <span class="text-xl font-bold">植物营养生物学课题组</span>
-                    </div>
-                    <p class="text-gray-400 mb-6">
-                        致力于作物养分高效利用与抗逆机制研究，为农业可持续发展提供理论支持和技术创新。
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-weixin text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-weibo text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-github text-xl"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4">作物养分高效利用与抗逆机制课题组</h3>
+                    <p class="text-gray-300">隶属于"植物营养生物学团队"</p>
+                    <p class="text-gray-300 mt-2">专注于作物养分高效利用与抗逆机制研究</p>
                 </div>
-                
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">快速链接</h3>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
-                        <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors">科研成果</a></li>
-                        <li><a href="members.html" class="text-gray-400 hover:text-white transition-colors">课题组成员</a></li>
-                        <li><a href="recruitment.html" class="text-gray-400 hover:text-white transition-colors">招生说明</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    <h3 class="text-xl font-bold mb-4">联系方式</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:dgd@mail.hzau.edu.cn" class="hover:text-primary">dgd@mail.hzau.edu.cn</a></li>
+                        <li><i class="fa-solid fa-map-marker-alt mr-2"></i> 湖北省武汉市洪山区华中农业大学 430070</li>
+                        <li><i class="fa-solid fa-building mr-2"></i> 华中农业大学主楼3楼</li>
                     </ul>
                 </div>
-                
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">联系方式</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-envelope text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">dgd@mail.hzau.edu.cn</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-map-marker-alt text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">湖北省武汉市洪山区华中农业大学 430070</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-building text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">华中农业大学主楼3楼</span>
-                        </li>
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-primary">首页</a></li>
+                        <li><a href="research.html" class="hover:text-primary">科研成果</a></li>
+                        <li><a href="members.html" class="hover:text-primary">课题组成员</a></li>
+                        <li><a href="recruitment.html" class="hover:text-primary">招生说明</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">联系我们</a></li>
                     </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-6">订阅更新</h3>
-                    <p class="text-gray-400 mb-4">
-                        订阅我们的通讯，获取最新研究动态和活动信息。
-                    </p>
-                    <form class="flex">
-                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 bg-white/10 border border-white/20 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-accent w-full text-white">
-                        <button type="submit" class="bg-accent hover:bg-accent/90 px-4 py-2 rounded-r-lg transition-colors">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
-                <p>&copy; 2025 植物营养生物学课题组. 保留所有权利.</p>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 作物养分高效利用与抗逆机制课题组. 保留所有权利.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                ? '<i class="fa-solid fa-bars text-xl"></i>' 
+                : '<i class="fa-solid fa-times text-xl"></i>';
+        });
+        
         // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
+        let lastScrollTop = 0;
+        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
                 navbar.classList.add('py-2', 'shadow-md');
                 navbar.classList.remove('py-3', 'shadow-sm');
             } else {
                 navbar.classList.add('py-3', 'shadow-sm');
                 navbar.classList.remove('py-2', 'shadow-md');
             }
-        });
-        
-        // 移动端菜单切换
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuToggle.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-            } else {
-                menuToggle.innerHTML = '<i class="fa-solid fa-times text-2xl"></i>';
-            }
-        });
-        
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // 图片懒加载
-        document.addEventListener("DOMContentLoaded", function() {
-            const lazyImages = [].slice.call(document.querySelectorAll("img"));
             
-            if ("IntersectionObserver" in window) {
-                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let lazyImage = entry.target;
-                            lazyImage.src = lazyImage.dataset.src;
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
+            lastScrollTop = scrollTop;
+        });
+        
+        // 添加页面进入动画
+        document.addEventListener('DOMContentLoaded', () => {
+            const animateElements = document.querySelectorAll('.animate-fade-in, .animate-slide-up');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
                 });
-                
-                lazyImages.forEach(function(lazyImage) {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            }
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                if (el.classList.contains('animate-slide-up')) {
+                    el.style.transform = 'translateY(20px)';
+                }
+                observer.observe(el);
+            });
         });
     </script>
 </body>
