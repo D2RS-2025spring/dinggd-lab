@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>植物营养生物学课题组 - 科研成果</title>
+    <title>科研成果 - 作物养分高效利用与抗逆机制课题组</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,16 +12,25 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#0F4C81', // 深蓝主色调，代表专业性和信任感
-                        secondary: '#3A86FF', // 亮蓝色辅助色
-                        accent: '#FB8500', // 橙色强调色，增添活力
-                        neutral: '#F8F9FA', // 浅色背景
-                        dark: '#212529', // 深色文本
+                        primary: '#1e40af',
+                        secondary: '#3b82f6',
+                        accent: '#0ea5e9',
+                        neutral: '#f3f4f6',
+                        'neutral-dark': '#1f2937',
                     },
                     fontFamily: {
                         inter: ['Inter', 'sans-serif'],
                     },
-                }
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                },
             }
         }
     </script>
@@ -33,384 +42,280 @@
             .text-shadow {
                 text-shadow: 0 2px 4px rgba(0,0,0,0.1);
             }
-            .transition-navbar {
-                transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+            .nav-link {
+                @apply relative text-neutral-dark hover:text-primary transition-colors duration-300;
             }
-            .hover-scale {
-                transition: transform 0.3s ease;
+            .nav-link::after {
+                @apply content-[''] absolute bottom-[-4px] left-0 w-0 h-[2px] bg-primary transition-all duration-300;
             }
-            .hover-scale:hover {
-                transform: scale(1.03);
+            .nav-link:hover::after {
+                @apply w-full;
+            }
+            .nav-link.active {
+                @apply text-primary font-medium;
+            }
+            .nav-link.active::after {
+                @apply w-full;
             }
             .publication-item {
-                transition: all 0.3s ease;
+                @apply mb-6 pb-6 border-b border-gray-200 last:border-0 last:mb-0 last:pb-0;
             }
-            .publication-item:hover {
-                transform: translateX(5px);
-                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            .publication-year {
+                @apply text-xl font-bold text-primary mb-4 mt-8 first:mt-0;
+            }
+            .publication-title {
+                @apply font-semibold text-lg mb-2;
+            }
+            .publication-authors {
+                @apply text-gray-700 mb-1;
+            }
+            .publication-journal {
+                @apply text-gray-600 mb-1;
+            }
+            .publication-link {
+                @apply text-primary hover:underline inline-block;
+            }
+            .patent-item {
+                @apply mb-4 pb-4 border-b border-gray-200 last:border-0 last:mb-0 last:pb-0;
             }
         }
     </style>
 </head>
-<body class="font-inter bg-neutral text-dark">
+<body class="font-inter bg-neutral text-neutral-dark">
     <!-- 导航栏 -->
-    <header id="navbar" class="fixed w-full top-0 z-50 transition-navbar bg-white/95 backdrop-blur-sm shadow-sm">
+    <header id="navbar" class="fixed w-full top-0 z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <a href="index.html" class="flex items-center space-x-2">
-                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center">
-                    <i class="fa-solid fa-leaf text-white text-xl"></i>
-                </div>
-                <span class="text-xl font-bold text-primary">植物营养生物学课题组</span>
+                <span class="text-primary text-2xl font-bold">作物养分高效利用与抗逆机制课题组</span>
             </a>
             
             <!-- 桌面导航 -->
             <nav class="hidden md:flex items-center space-x-8">
-                <a href="index.html" class="font-medium text-dark hover:text-primary transition-colors">首页</a>
-                <a href="research.html" class="font-medium text-primary border-b-2 border-primary pb-1">科研成果</a>
-                <a href="members.html" class="font-medium text-dark hover:text-primary transition-colors">课题组成员</a>
-                <a href="recruitment.html" class="font-medium text-dark hover:text-primary transition-colors">招生说明</a>
-                <a href="contact.html" class="font-medium text-dark hover:text-primary transition-colors">联系我们</a>
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="research.html" class="nav-link active">科研成果</a>
+                <a href="members.html" class="nav-link">课题组成员</a>
+                <a href="recruitment.html" class="nav-link">招生说明</a>
+                <a href="contact.html" class="nav-link">联系我们</a>
             </nav>
             
             <!-- 移动端菜单按钮 -->
-            <button id="menu-toggle" class="md:hidden text-dark focus:outline-none">
-                <i class="fa-solid fa-bars text-2xl"></i>
+            <button id="menuBtn" class="md:hidden text-neutral-dark focus:outline-none">
+                <i class="fa-solid fa-bars text-xl"></i>
             </button>
         </div>
         
         <!-- 移动端导航菜单 -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+        <div id="mobileMenu" class="md:hidden hidden bg-white shadow-lg absolute w-full animate-fade-in">
             <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-                <a href="index.html" class="font-medium text-dark py-2 border-b border-gray-100 hover:text-primary transition-colors">首页</a>
-                <a href="research.html" class="font-medium text-primary py-2 border-b border-gray-100">科研成果</a>
-                <a href="members.html" class="font-medium text-dark py-2 border-b border-gray-100 hover:text-primary transition-colors">课题组成员</a>
-                <a href="recruitment.html" class="font-medium text-dark py-2 border-b border-gray-100 hover:text-primary transition-colors">招生说明</a>
-                <a href="contact.html" class="font-medium text-dark py-2 hover:text-primary transition-colors">联系我们</a>
+                <a href="index.html" class="py-2 px-4 nav-link">首页</a>
+                <a href="research.html" class="py-2 px-4 nav-link active">科研成果</a>
+                <a href="members.html" class="py-2 px-4 nav-link">课题组成员</a>
+                <a href="recruitment.html" class="py-2 px-4 nav-link">招生说明</a>
+                <a href="contact.html" class="py-2 px-4 nav-link">联系我们</a>
             </div>
         </div>
     </header>
 
     <!-- 主内容 -->
-    <main class="pt-20">
-        <!-- 英雄区域 -->
-        <section class="relative bg-gradient-to-r from-primary to-secondary text-white py-20 md:py-28 overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://picsum.photos/id/106/1920/1080')] bg-cover bg-center opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-secondary/90"></div>
-            <div class="container mx-auto px-4 relative z-10">
-                <div class="max-w-3xl">
-                    <h1 class="text-[clamp(2.5rem,5vw,4rem)] font-bold leading-tight text-shadow mb-6">科研成果</h1>
-                    <p class="text-[clamp(1.1rem,2vw,1.3rem)] text-white/90">
-                        我们的研究团队在植物营养与抗逆领域取得了一系列重要成果，发表了多篇高水平研究论文。
-                    </p>
-                </div>
-            </div>
-            
-            <!-- 波浪装饰 -->
-            <div class="absolute bottom-0 left-0 w-full">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" class="w-full h-auto">
-                    <path fill="#F8F9FA" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
-                </svg>
+    <main class="pt-20 pb-16">
+        <!-- 页面标题 -->
+        <section class="bg-gradient-to-r from-primary to-secondary py-16 text-white">
+            <div class="container mx-auto px-4">
+                <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-center text-shadow animate-fade-in">科研成果</h1>
+                <p class="text-[clamp(1rem,2vw,1.25rem)] text-center mt-4 max-w-3xl mx-auto animate-fade-in">课题组发表的学术论文与专利</p>
             </div>
         </section>
 
-        <!-- 科研成果 -->
-        <section class="py-16 bg-white">
+        <!-- 科研成果内容 -->
+        <section class="py-12">
             <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">研究论文</h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto">
-                        我们的研究成果发表在国际知名学术期刊上，涵盖植物营养、逆境生理、分子生物学等多个领域。
-                    </p>
-                    <div class="w-20 h-1 bg-accent mx-auto rounded-full mt-4"></div>
-                </div>
-                
-                <!-- 英文论文 -->
-                <div class="mb-16">
-                    <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                            <i class="fa-solid fa-language text-primary"></i>
-                        </div>
-                        英文论文
-                    </h3>
-                    
-                    <!-- 2024年论文 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 max-w-5xl mx-auto">
+                    <!-- 英文论文 -->
                     <div class="mb-12">
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2024</span>
-                        </h4>
+                        <h2 class="text-2xl font-bold text-primary mb-6 border-b-2 border-primary/20 pb-3">英文论文</h2>
                         
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://onlinelibrary.wiley.com/doi/10.1111/tpj.16529" target="_blank" class="text-primary hover:underline">
-                                        Nitrate alleviates ammonium toxicity in Brassica napus by coordinating rhizosphere and cell pH and ammonium assimilation.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Li Shuang, Yan Lei, Zhang Wen, Yi Ceng, Haider Sharjeel, Wang Chuang, Liu Yu, Shi Lei, Xu Fangsen, and Ding Guangda*.
-                                    <span class="font-medium">Plant Journal</span>, 2024, 117, 786-804.
-                                </p>
-                            </div>
-                            
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://www.sciencedirect.com/science/article/pii/S0981942824000573" target="_blank" class="text-primary hover:underline">
-                                        Acid phosphatase involved in phosphate homeostasis in Brassica napus and the regulation mechanism analysis of BnaPAP10s.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Zhang Hao, He Xuyou, Munyaneza Venuste, Zhang Guangzeng, Ye Xiangsheng, Wang Chuang, Shi Lei, Wang Xu, Ding Guangda*.
-                                    <span class="font-medium">Plant Physiology and Biochemistry</span>, 2024，208, 108389.
-                                </p>
-                            </div>
-                            
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://pubmed.ncbi.nlm.nih.gov/39442300/" target="_blank" class="text-primary hover:underline">
-                                        Transcription factor AtNAC002 positively regulates Cu toxicity tolerance in Arabidopsis thaliana.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Zhang Wen, Munyaneza Venuste, Kant Surya, Wang Sidan, Wang Xu, Cai Hongmei, Wang Chuang, Shi Lei, Wang Sheliang, Xu Fangsen, Ding Guangda*.
-                                    <span class="font-medium">Journal of Hazardous Materials</span>, 2024，480 ，136186.
-                                </p>
-                            </div>
+                        <!-- 2024年 -->
+                        <h3 class="publication-year">2024</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://onlinelibrary.wiley.com/doi/10.1111/tpj.16529" target="_blank" class="publication-link">Nitrate alleviates ammonium toxicity in Brassica napus by coordinating rhizosphere and cell pH and ammonium assimilation.</a>
+                            </p>
+                            <p class="publication-authors">Li Shuang, Yan Lei, Zhang Wen, Yi Ceng, Haider Sharjeel, Wang Chuang, Liu Yu, Shi Lei, Xu Fangsen, and Ding Guangda*.</p>
+                            <p class="publication-journal">Plant Journal, 2024, 117, 786-804.</p>
+                            <a href="https://onlinelibrary.wiley.com/doi/10.1111/tpj.16529" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://www.sciencedirect.com/science/article/pii/S0981942824000573" target="_blank" class="publication-link">Acid phosphatase involved in phosphate homeostasis in Brassica napus and the regulation mechanism analysis of BnaPAP10s.</a>
+                            </p>
+                            <p class="publication-authors">Zhang Hao, He Xuyou, Munyaneza Venuste, Zhang Guangzeng, Ye Xiangsheng, Wang Chuang, Shi Lei, Wang Xu, Ding Guangda*.</p>
+                            <p class="publication-journal">Plant Physiology and Biochemistry, 2024，208, 108389.</p>
+                            <a href="https://www.sciencedirect.com/science/article/pii/S0981942824000573" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://pubmed.ncbi.nlm.nih.gov/39442300/" target="_blank" class="publication-link">Transcription factor AtNAC002 positively regulates Cu toxicity tolerance in Arabidopsis thaliana.</a>
+                            </p>
+                            <p class="publication-authors">Zhang Wen, Munyaneza Venuste, Kant Surya, Wang Sidan, Wang Xu, Cai Hongmei, Wang Chuang, Shi Lei, Wang Sheliang, Xu Fangsen, Ding Guangda*.</p>
+                            <p class="publication-journal">Journal of Hazardous Materials, 2024，480 ，136186.</p>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/39442300/" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <!-- 2023年 -->
+                        <h3 class="publication-year">2023</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://www.sciencedirect.com/science/article/pii/S0045653523017411" target="_blank" class="publication-link">A critical review of plant adaptation to environmental boron stress: uptake, utilization, and interplay with other abiotic and biotic factors.</a>
+                            </p>
+                            <p class="publication-authors">Li Shuang, Yan Lei, Venuste Munyaneza, Xu Fangsen, Shi Lei, Philip J. White, Wang Xu, Ding Guangda*.</p>
+                            <p class="publication-journal">Chemosphere, 2024，338, 139474.</p>
+                            <a href="https://www.sciencedirect.com/science/article/pii/S0045653523017411" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://pubmed.ncbi.nlm.nih.gov/37836101/" target="_blank" class="publication-link">Phosphate transporter BnaPT37 regulates phosphate homeostasis in Brassica napus by changing its translocation and distribution in vivo.</a>
+                            </p>
+                            <p class="publication-authors">Li Yu, Wang Xue, Zhang Hao, Ye Xiangsgheng, Shi Lei, Xu Fangsen, Ding Guangda*.</p>
+                            <p class="publication-journal">Plants. 2023, 12: 3362.</p>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/37836101/" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <!-- 2022年 -->
+                        <h3 class="publication-year">2022</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.18057" target="_blank" class="publication-link">A crucial role for a node-localized transporter, HvSPDT, in loading phosphorus into barley grains.</a>
+                            </p>
+                            <p class="publication-authors">Gu M#, Huang H#, Hisano H, Ding GD, Huang S, Mitani-Ueno N, Yokosho K, Sato K, Yamaji N*, Ma JF*.</p>
+                            <p class="publication-journal">New Phytologist. 2022, 234(4):1249-1261.</p>
+                            <a href="https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.18057" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://www.sciencedirect.com/science/article/pii/S0098847222001277" target="_blank" class="publication-link">Boron mediates nitrogen starvation-induced leaf senescence by regulating ROS production and C/N balance in Brassica napus.</a>
+                            </p>
+                            <p class="publication-authors">Wang YQ, Zhao Z, Wang SL, Shi L, Ding GD*, Xu FS*.</p>
+                            <p class="publication-journal">Environmental and Experimental Botany. 2022, 200: 104905.</p>
+                            <a href="https://www.sciencedirect.com/science/article/pii/S0098847222001277" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://www.mdpi.com/2073-4395/12/10/2477" target="_blank" class="publication-link">Evaluation of the effects of nitrogen, phosphorus, and potassium applications on the growth, yield, and quality of lettuce (Lactuca sativa L.).</a>
+                            </p>
+                            <p class="publication-authors">Hong J, Xu F, Chen G, Huang X, Wang S, Du L, Ding G*.</p>
+                            <p class="publication-journal">Agronomy. 2022, 12, 2477.</p>
+                            <a href="https://www.mdpi.com/2073-4395/12/10/2477" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
                         </div>
                     </div>
                     
-                    <!-- 2023年论文 -->
+                    <!-- 中文文章 -->
                     <div class="mb-12">
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2023</span>
-                        </h4>
+                        <h2 class="text-2xl font-bold text-primary mb-6 border-b-2 border-primary/20 pb-3">中文文章</h2>
                         
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://www.sciencedirect.com/science/article/pii/S0045653523017411" target="_blank" class="text-primary hover:underline">
-                                        A critical review of plant adaptation to environmental boron stress: uptake, utilization, and interplay with other abiotic and biotic factors.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Li Shuang, Yan Lei, Venuste Munyaneza, Xu Fangsen, Shi Lei, Philip J. White, Wang Xu, Ding Guangda*.
-                                    <span class="font-medium">Chemosphere</span>, 2024，338, 139474.
-                                </p>
-                            </div>
-                            
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://pubmed.ncbi.nlm.nih.gov/37836101/" target="_blank" class="text-primary hover:underline">
-                                        Phosphate transporter BnaPT37 regulates phosphate homeostasis in Brassica napus by changing its translocation and distribution in vivo.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Li Yu, Wang Xue, Zhang Hao, Ye Xiangsgheng, Shi Lei, Xu Fangsen, Ding Guangda*.
-                                    <span class="font-medium">Plants</span>. 2023, 12: 3362.
-                                </p>
-                            </div>
+                        <!-- 2025年 -->
+                        <h3 class="publication-year">2025</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/L202411008" target="_blank" class="publication-link">我国酸性土壤区油菜耐酸高产技术与综合利用模式</a>
+                            </p>
+                            <p class="publication-authors">冉文昊 1，徐芳森 1，史仕军 1，孙明珠 2，戴志刚 3，张洁 4，丁广大 1*</p>
+                            <p class="publication-journal">华中农业大学学报</p>
+                            <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/L202411008" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <!-- 2024年 -->
+                        <h3 class="publication-year">2024</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://www.nkdb.net/CN/10.13304/j.nykjdb.2022.0706" target="_blank" class="publication-link">遮阴栽培对雪茄茄衣烟叶叶面均匀性的影响</a>
+                            </p>
+                            <p class="publication-authors">郭昊 1§， 谭荣雷 1§， 杨锦鹏 2， 余君 2， 黄文昌 2， 杨久红 3， 乔保明 2，杨瑞玮 2， 徐芳森 1， 杨春雷 2*， 丁广大 1*</p>
+                            <p class="publication-journal">中国农业科技导报</p>
+                            <a href="https://www.nkdb.net/CN/10.13304/j.nykjdb.2022.0706" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <!-- 2023年 -->
+                        <h3 class="publication-year">2023</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/202306019?st=article_issue" target="_blank" class="publication-link">甘蓝型油菜耐铝极端品种筛选及耐铝生理机制初步解析</a>
+                            </p>
+                            <p class="publication-authors">张雯，黄益丹，张鹏超，徐芳森，王创，丁广大*</p>
+                            <p class="publication-journal">华中农业大学学报</p>
+                            <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/202306019?st=article_issue" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/202306020" target="_blank" class="publication-link">甘蓝型油菜苗期耐酸性综合评价及耐酸种质筛选</a>
+                            </p>
+                            <p class="publication-authors">张鹏超，张雯，黄益丹，冉文昊，徐芳森，丁广大*</p>
+                            <p class="publication-journal">华中农业大学学报</p>
+                            <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/202306020" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
+                        </div>
+                        
+                        <!-- 2022年 -->
+                        <h3 class="publication-year">2022</h3>
+                        <div class="publication-item">
+                            <p class="publication-title">
+                                <a href="https://www.nkdb.net/CN/10.13304/j.nykjdb.2022.0706" target="_blank" class="publication-link">遮荫栽培对雪茄茄衣烟叶叶面均匀性的影响</a>
+                            </p>
+                            <p class="publication-authors">郭昊#，谭荣雷#，杨锦鹏，余君，杨久红，乔保明，杨瑞玮，徐芳森，杨春雷*，丁广大*</p>
+                            <p class="publication-journal">中国农业科技导报</p>
+                            <a href="https://www.nkdb.net/CN/10.13304/j.nykjdb.2022.0706" target="_blank" class="publication-link">
+                                <i class="fa-solid fa-link mr-1"></i> 查看全文
+                            </a>
                         </div>
                     </div>
                     
-                    <!-- 2022年论文 -->
+                    <!-- 专利 -->
                     <div>
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2022</span>
-                        </h4>
-                        
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://nph.onlinelibrary.wiley.com/doi/full/10.1111/nph.18057" target="_blank" class="text-primary hover:underline">
-                                        A crucial role for a node-localized transporter, HvSPDT, in loading phosphorus into barley grains.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Gu M#, Huang H#, Hisano H, Ding GD, Huang S, Mitani-Ueno N, Yokosho K, Sato K, Yamaji N*, Ma JF*.
-                                    <span class="font-medium">New Phytologist</span>. 2022, 234(4):1249-1261.
-                                </p>
-                            </div>
-                            
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://www.sciencedirect.com/science/article/pii/S0098847222001277" target="_blank" class="text-primary hover:underline">
-                                        Boron mediates nitrogen starvation-induced leaf senescence by regulating ROS production and C/N balance in Brassica napus.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Wang YQ, Zhao Z, Wang SL, Shi L, Ding GD*, Xu FS*.
-                                    <span class="font-medium">Environmental and Experimental Botany</span>. 2022, 200: 104905.
-                                </p>
-                            </div>
-                            
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://www.mdpi.com/2073-4395/12/10/2477" target="_blank" class="text-primary hover:underline">
-                                        Evaluation of the effects of nitrogen, phosphorus, and potassium applications on the growth, yield, and quality of lettuce (Lactuca sativa L.).
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    Hong J, Xu F, Chen G, Huang X, Wang S, Du L, Ding G*.
-                                    <span class="font-medium">Agronomy</span>. 2022, 12, 2477.
-                                </p>
-                            </div>
+                        <h2 class="text-2xl font-bold text-primary mb-6 border-b-2 border-primary/20 pb-3">专利</h2>
+                        <div class="patent-item">
+                            <p class="font-semibold mb-2">一种层深可定式土壤样品分切装置</p>
+                            <p class="text-gray-700">发明人：丁广大，张鹏超，许凯博，张雯，易层，阿卜杜萨拉木·赛麦提，石磊</p>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- 中文论文 -->
-                <div>
-                    <h3 class="text-2xl font-bold text-primary mb-8 flex items-center">
-                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mr-3">
-                            <i class="fa-solid fa-book text-primary"></i>
+                        <div class="patent-item">
+                            <p class="font-semibold mb-2">油菜耐酸高产性的评价方法及耐酸高产油菜品种的筛选方法</p>
+                            <p class="text-gray-700">发明人：丁广大，张鹏超，许凯博，张雯，任璐璐，易波涛，王创，徐芳森</p>
                         </div>
-                        中文论文
-                    </h3>
-                    
-                    <!-- 2025年论文 -->
-                    <div class="mb-12">
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2025</span>
-                        </h4>
-                        
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/L202411008" target="_blank" class="text-primary hover:underline">
-                                        我国酸性土壤区油菜耐酸高产技术与综合利用模式
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    冉文昊 1，徐芳森 1，史仕军 1，孙明珠 2，戴志刚 3，张洁 4，丁广大 1*
-                                    <span class="font-medium">华中农业大学学报</span>
-                                </p>
-                            </div>
+                        <div class="patent-item">
+                            <p class="font-semibold mb-2">一种环境可变式耐瘠抗逆作物品种高通量筛选装置</p>
+                            <p class="text-gray-700">发明人：丁广大，张鹏超，徐芳森，石磊，王创，汪社亮，蔡红梅</p>
                         </div>
-                    </div>
-                    
-                    <!-- 2024年论文 -->
-                    <div class="mb-12">
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2024</span>
-                        </h4>
-                        
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://www.nkdb.net/CN/10.13304/j.nykjdb.2022.0706" target="_blank" class="text-primary hover:underline">
-                                        遮阴栽培对雪茄茄衣烟叶叶面均匀性的影响
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    郭昊 1§， 谭荣雷 1§， 杨锦鹏 2， 余君 2， 黄文昌 2， 杨久红 3， 乔保明 2，杨瑞玮 2， 徐芳森 1， 杨春雷 2*， 丁广大 1*
-                                    <span class="font-medium">中国农业科技导报</span>
-                                </p>
-                            </div>
+                        <div class="patent-item">
+                            <p class="font-semibold mb-2">一种油菜叶肉原生质体的制备方法</p>
+                            <p class="text-gray-700">发明人：丁广大，张 浩，李 玉，石 磊，汪社亮，徐芳森</p>
                         </div>
-                    </div>
-                    
-                    <!-- 2023年论文 -->
-                    <div class="mb-12">
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2023</span>
-                        </h4>
-                        
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/202306019?st=article_issue" target="_blank" class="text-primary hover:underline">
-                                        甘蓝型油菜耐铝极端品种筛选及耐铝生理机制初步解析
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    张雯，黄益丹，张鹏超，徐芳森，王创，丁广大*
-                                    <span class="font-medium">华中农业大学学报</span>
-                                </p>
-                            </div>
-                            
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="http://hnxbl.cnjournals.net/hznydxzr/article/abstract/202306020" target="_blank" class="text-primary hover:underline">
-                                        甘蓝型油菜苗期耐酸性综合评价及耐酸种质筛选
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    张鹏超，张雯，黄益丹，冉文昊，徐芳森，丁广大*
-                                    <span class="font-medium">华中农业大学学报</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 2022年论文 -->
-                    <div>
-                        <h4 class="text-xl font-semibold text-primary mb-6 flex items-center">
-                            <span class="inline-block w-8 h-8 bg-accent text-white rounded-full text-center leading-8 mr-3">2022</span>
-                        </h4>
-                        
-                        <div class="space-y-6">
-                            <div class="publication-item bg-neutral p-6 rounded-xl border-l-4 border-primary">
-                                <p class="font-medium">
-                                    <a href="https://www.nkdb.net/CN/10.13304/j.nykjdb.2022.0706" target="_blank" class="text-primary hover:underline">
-                                        遮荫栽培对雪茄茄衣烟叶叶面均匀性的影响.
-                                    </a>
-                                </p>
-                                <p class="text-gray-600">
-                                    郭昊#，谭荣雷#，杨锦鹏，余君，杨久红，乔保明，杨瑞玮，徐芳森，杨春雷*，丁广大*
-                                    <span class="font-medium">中国农业科技导报</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- 专利 -->
-        <section class="py-16 bg-neutral">
-            <div class="container mx-auto px-4">
-                <div class="text-center mb-12">
-                    <h2 class="text-[clamp(1.8rem,3vw,2.5rem)] font-bold text-primary mb-4">专利</h2>
-                    <p class="text-gray-600 max-w-3xl mx-auto">
-                        我们的研究团队在植物营养与抗逆领域取得了多项专利成果，为农业生产提供了创新技术支持。
-                    </p>
-                    <div class="w-20 h-1 bg-accent mx-auto rounded-full mt-4"></div>
-                </div>
-                
-                <div class="space-y-6">
-                    <div class="publication-item bg-white p-6 rounded-xl border-l-4 border-accent">
-                        <p class="font-medium">
-                            一种层深可定式土壤样品分切装置
-                        </p>
-                        <p class="text-gray-600">
-                            发明人：丁广大，张鹏超，许凯博，张雯，易层，阿卜杜萨拉木·赛麦提，石磊
-                        </p>
-                    </div>
-                    
-                    <div class="publication-item bg-white p-6 rounded-xl border-l-4 border-accent">
-                        <p class="font-medium">
-                            油菜耐酸高产性的评价方法及耐酸高产油菜品种的筛选方法
-                        </p>
-                        <p class="text-gray-600">
-                            发明人：丁广大，张鹏超，许凯博，张雯，任璐璐，易波涛，王创，徐芳森
-                        </p>
-                    </div>
-                    
-                    <div class="publication-item bg-white p-6 rounded-xl border-l-4 border-accent">
-                        <p class="font-medium">
-                            一种环境可变式耐瘠抗逆作物品种高通量筛选装置
-                        </p>
-                        <p class="text-gray-600">
-                            发明人：丁广大，张鹏超，徐芳森，石磊，王创，汪社亮，蔡红梅
-                        </p>
-                    </div>
-                    
-                    <div class="publication-item bg-white p-6 rounded-xl border-l-4 border-accent">
-                        <p class="font-medium">
-                            一种油菜叶肉原生质体的制备方法
-                        </p>
-                        <p class="text-gray-600">
-                            发明人：丁广大，张 浩，李 玉，石 磊，汪社亮，徐芳森
-                        </p>
                     </div>
                 </div>
             </div>
@@ -418,136 +323,67 @@
     </main>
 
     <!-- 页脚 -->
-    <footer class="bg-dark text-white pt-16 pb-8">
+    <footer class="bg-neutral-dark text-white py-12">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <div class="flex items-center space-x-2 mb-6">
-                        <div class="w-10 h-10 rounded-full bg-white flex items-center justify-center">
-                            <i class="fa-solid fa-leaf text-primary text-xl"></i>
-                        </div>
-                        <span class="text-xl font-bold">植物营养生物学课题组</span>
-                    </div>
-                    <p class="text-gray-400 mb-6">
-                        致力于作物养分高效利用与抗逆机制研究，为农业可持续发展提供理论支持和技术创新。
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-weixin text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-weibo text-xl"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
-                            <i class="fa-brands fa-github text-xl"></i>
-                        </a>
-                    </div>
+                    <h3 class="text-xl font-bold mb-4">作物养分高效利用与抗逆机制课题组</h3>
+                    <p class="text-gray-300">隶属于"植物营养生物学团队"</p>
+                    <p class="text-gray-300 mt-2">专注于作物养分高效利用与抗逆机制研究</p>
                 </div>
-                
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">快速链接</h3>
-                    <ul class="space-y-3">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
-                        <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors">科研成果</a></li>
-                        <li><a href="members.html" class="text-gray-400 hover:text-white transition-colors">课题组成员</a></li>
-                        <li><a href="recruitment.html" class="text-gray-400 hover:text-white transition-colors">招生说明</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">联系我们</a></li>
+                    <h3 class="text-xl font-bold mb-4">联系方式</h3>
+                    <ul class="space-y-2">
+                        <li><i class="fa-solid fa-envelope mr-2"></i> <a href="mailto:dgd@mail.hzau.edu.cn" class="hover:text-primary">dgd@mail.hzau.edu.cn</a></li>
+                        <li><i class="fa-solid fa-map-marker-alt mr-2"></i> 湖北省武汉市洪山区华中农业大学 430070</li>
+                        <li><i class="fa-solid fa-building mr-2"></i> 华中农业大学主楼3楼</li>
                     </ul>
                 </div>
-                
                 <div>
-                    <h3 class="text-lg font-semibold mb-6">联系方式</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-envelope text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">dgd@mail.hzau.edu.cn</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-map-marker-alt text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">湖北省武汉市洪山区华中农业大学 430070</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fa-solid fa-building text-accent mt-1 mr-3"></i>
-                            <span class="text-gray-400">华中农业大学主楼3楼</span>
-                        </li>
+                    <h3 class="text-xl font-bold mb-4">快速链接</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-primary">首页</a></li>
+                        <li><a href="research.html" class="hover:text-primary">科研成果</a></li>
+                        <li><a href="members.html" class="hover:text-primary">课题组成员</a></li>
+                        <li><a href="recruitment.html" class="hover:text-primary">招生说明</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">联系我们</a></li>
                     </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-semibold mb-6">订阅更新</h3>
-                    <p class="text-gray-400 mb-4">
-                        订阅我们的通讯，获取最新研究动态和活动信息。
-                    </p>
-                    <form class="flex">
-                        <input type="email" placeholder="您的邮箱地址" class="px-4 py-2 bg-white/10 border border-white/20 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-accent w-full text-white">
-                        <button type="submit" class="bg-accent hover:bg-accent/90 px-4 py-2 rounded-r-lg transition-colors">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </form>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
-                <p>&copy; 2025 植物营养生物学课题组. 保留所有权利.</p>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 作物养分高效利用与抗逆机制课题组. 保留所有权利.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
+        // 移动端菜单切换
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuBtn.innerHTML = mobileMenu.classList.contains('hidden') 
+                ? '<i class="fa-solid fa-bars text-xl"></i>' 
+                : '<i class="fa-solid fa-times text-xl"></i>';
+        });
+        
         // 导航栏滚动效果
         const navbar = document.getElementById('navbar');
+        let lastScrollTop = 0;
+        
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 50) {
                 navbar.classList.add('py-2', 'shadow-md');
                 navbar.classList.remove('py-3', 'shadow-sm');
             } else {
                 navbar.classList.add('py-3', 'shadow-sm');
                 navbar.classList.remove('py-2', 'shadow-md');
             }
-        });
-        
-        // 移动端菜单切换
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            if (mobileMenu.classList.contains('hidden')) {
-                menuToggle.innerHTML = '<i class="fa-solid fa-bars text-2xl"></i>';
-            } else {
-                menuToggle.innerHTML = '<i class="fa-solid fa-times text-2xl"></i>';
-            }
-        });
-        
-        // 平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // 图片懒加载
-        document.addEventListener("DOMContentLoaded", function() {
-            const lazyImages = [].slice.call(document.querySelectorAll("img"));
             
-            if ("IntersectionObserver" in window) {
-                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-                    entries.forEach(function(entry) {
-                        if (entry.isIntersecting) {
-                            let lazyImage = entry.target;
-                            lazyImage.src = lazyImage.dataset.src;
-                            lazyImageObserver.unobserve(lazyImage);
-                        }
-                    });
-                });
-                
-                lazyImages.forEach(function(lazyImage) {
-                    lazyImageObserver.observe(lazyImage);
-                });
-            }
+            lastScrollTop = scrollTop;
         });
     </script>
 </body>
